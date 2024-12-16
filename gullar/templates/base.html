@@ -1,0 +1,31 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- MDBootstrap CSS -->
+
+    <title>{{title}}</title>
+    {% include 'components/_styles.html '%}
+</head>
+<body>
+
+    {% include 'components/flavers/_novbar.html '%}
+
+{% block turlar%}
+    {% endblock turlar%}
+
+
+
+
+{% block gullar%}
+    {% endblock gullar%}
+
+{%include 'components/flavers/scripts.html' %}
+    <!-- Footer -->
+    {% include 'components/flavers/scripts.html '%}
+
+
+    <!-- MDBootstrap JS -->
+</body>
+</html>

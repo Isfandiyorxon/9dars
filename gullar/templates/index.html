@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block turlar%}
+
+       <!-- Cards -->
+        <div class="row row-cols-1 row-cols-md-12 g-5 me-5 mt-5">
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="">
+                            {% if gul.photo %}
+                                <img src="{{ gul.photo.url }}" class="card-img-top" alt="{{ gul.photo.name }}" />
+                            {% else %}
+                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road" />
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <a href="">
+                                <h4 class="card-title">{{ gul.name }}</h4>
+                            </a>
+                            <p class="card-text">
+                                {% if '/gullar/' in request.path %}
+                                    {{ gul.about|linebreaks }}
+                                {% else %}
+                                    {{ gul.about|linebreaks }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <small class="text-muted">{{ gul.name }}</small>
+                            <a href="{% url 'gul_by_tur' gul.tur.id %}">
+                                <small class="text-muted">{{ gul.tur.name }}</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- End Cards -->
+{% endblock turlar%}

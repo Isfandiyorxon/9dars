@@ -1,0 +1,49 @@
+{% extends 'base.html'%}
+
+{% block turlar%}
+  <!-- Buttons -->
+        <div class="d-flex justify-content-center gap-3 mt-5 mb-5">
+            {% for tur in turlar %}
+                <a href="{% url 'gul_by_tur' tur.id %}" type="button" class="btn btn-primary" data-mdb-ripple-init>{{ tur.name }}</a>
+            {% endfor %}
+        </div>
+    {% endblock turlar%}
+
+{% block gullar%}
+    <!-- Cards -->
+        <div class="row row-cols-1 row-cols-md-2 g-5 me-5">
+            {% for gul in gullar %}
+                <div class="col">
+                    <div class="card h-100">
+                        <a href="{%url 'detail' gul.pk%}">
+                            {% if gul.photo %}
+                                <img src="{{ gul.photo.url }}" class="card-img-top" alt="{{ gul.photo.name }}" />
+                            {% else %}
+                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road" />
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'detail' gul.pk%}">
+                                <h4 class="card-title">{{ gul.name }}</h4>
+                            </a>
+                            <p class="card-text">
+                                {% if '/gullar/' in request.path %}
+                                    {{ gul.about|linebreaks }}
+                                {% else %}
+                                    {{ gul.about|truncatewords:10 }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between">
+                            <small class="text-muted">{{ gul.name }}</small>
+                            <a href="{% url 'gul_by_tur' gul.tur.id %}">
+                                <small class="text-muted">{{ gul.tur.name }}</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- End Cards -->
+    {% endblock gullar%}
