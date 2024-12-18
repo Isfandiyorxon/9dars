@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% include 'components/_styles.html' %}  <!-- Noto‘g‘ri bo‘shliqni olib tashladik -->
+
+{% block turlar %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if form.errors %}
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <button type="submit">Saqlash</button>
+</form>
+
+    {% include 'components/flavers/scripts.html' %}
+{% endblock turlar %}

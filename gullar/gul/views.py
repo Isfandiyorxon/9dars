@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
-
+from .forms import GulForm
 from .models import Gullar,Turlar
 def home(request):
     gulllar=Gullar.objects.all()
@@ -28,3 +28,25 @@ def gul_detail(request,pk):
         'title':f"{gul.name}:batafsil"
     }
     return render(request,'index.html',context)
+
+def add_gul(request):
+    if request.method == 'POST':
+        form=GulForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
+            gul=form.create()
+            return redirect('detail',pk=gul.pk)
+        else:
+            print(form.errors)
+        # else:
+        #     print(form.errors)
+        #     context = {
+        #         'form': form
+        #     }
+        #     return render(request, 'add_gul.html', context)
+    else:
+        form=GulForm()
+    context={
+        'form':form
+    }
+    return render(request,'add_gul.html',context)
+
