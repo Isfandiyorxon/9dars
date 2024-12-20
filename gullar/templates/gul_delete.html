@@ -1,0 +1,12 @@
+
+{% extends 'base.html' %}
+{% block turlar %}
+<h2>Maqolani o'chirish</h2>
+<form method="post" action="{% url 'delete-gul' gul.pk %}">
+    {% csrf_token %}
+    <p><b>{{ gul }}</b></p>
+    <p>Siz ushbu maqolani o'chirmoqchimisiz?</p>
+    <button type="submit" class="btn btn-danger">Ha 😊</button>
+    <a href="{% url 'detail' gul.pk %}" class="btn btn-secondary">Ortga 😭</a>
+</form>
+{% endblock turlar %}
